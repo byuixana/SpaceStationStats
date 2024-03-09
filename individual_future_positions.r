@@ -1,5 +1,5 @@
 ss_dataset <- read.csv("spacestations.csv")
-library(stringr)
+
 #Create a list of satellites with their eccentricity, their 
 
 #Shows the different eccentiricties of the stations. This is measing eccentricity
@@ -9,38 +9,42 @@ eccentricity <- table(ss_dataset$ECCENTRICITY)
 
 barplot(eccentricity, col="red", xlab = "Eccentricities", ylab = "Eccentricity Frequency")
 
-
-#Finds the mean_motions of the each, or how fast the average station goes around in an orbit.
-#my_array <- array(c(values_set1, values_set2), dim = c(2, 3))
-
-inclinations <- table(ss_dataset$INCLINATION)
-
-hist(inclinations, col="red", xlab = "Inclinations", ylab = "Frequency of Inclination")
-
-orbital_period_list = list(names = c(),
-orbital_period = c())
-
-#Times satellites were launched
-
-object_epochs <- ss_dataset$EPOCH
-
-object_ids <- ss_dataset$OBJECT_ID
-
-for (i in seq_len(object_ids))
-{
-    print(id)
-    id_string <- str_split(object_ids[i], "-")
-    print(id_string)
-}
-
 #Stacks 3 graphs on top of one another in a single column for comparison.
 par(mfrow = c(4, 1))
 xlim = c(0, 3)
 
-# mean_motion_1 <- ss_dataset$MEAN_MOTION[ss_dataset$OBJECT_NAME == "ISS (NAUKA)"]
+mean_motion_1 <- ss_dataset$MEAN_MOTION[ss_dataset$OBJECT_NAME == "ISS (NAUKA)"]
 
-# mean_motion_2 <- ss_dataset$MEAN_MOTION[ss_dataset$OBJECT_NAME == "ISS (ZARYA)"]
+mean_motion_2 <- ss_dataset$MEAN_MOTION[ss_dataset$OBJECT_NAME == "ISS (ZARYA)"]
 
-# mean_motions <- c(mean_motion_1, mean_motion_2)
-# labels <- c("ISS NAUKA", "ISS ZARYA")
-# barplot(mean_motions, names.arg = labels)
+mean_motions <- c(mean_motion_1, mean_motion_2)
+labels <- c("ISS NAUKA", "ISS ZARYA")
+barplot(mean_motions, names.arg = labels)
+
+target_object <- "ISS (ZARYA)"
+
+mean_motion <- ss_dataset$MEAN_MOTION[ss_dataset$OBJECT_NAME == target_object]
+
+eccentricity <- ss_dataset$ECCENTRICITY[ss_dataset$OBJECT_NAME == target_object]
+
+mean_anomaly <- ss_dataset$MEAN_ANOMALY[ss_dataset$OBJECT_NAME == target_object]
+
+cat("Mean motion:", mean_motion,"Eccentricity", 
+eccentricity,
+"Mean Anomaly: ", mean_anomaly)
+
+a = (9.81 / mean_motion^2)^(1/3)
+
+e_old =181.819 #degrees/radians
+e_new = 0
+
+while (abs(e_new-e_old) >= (1 * 10**-4))
+{
+  #Enew=M+e⋅sin(E old)
+    # e_new = mean_anomaly - eccentricity * (sin(e_old)) / (1 - eccentricity*cos(e_old))
+    #  e_new = e_old - (e_old - eccentricity * sin(e_old) - mean_anomaly) / (1 - eccentricity * cos(e_old))
+    e_new = e_old - (e_old - eccentricity*sin(e_old) - mean_anomaly) / (1 - eccentricity * cos(e_old))
+    e_old = e_new
+    print(e_old)
+}
+eccentric_anomaly <- e_old
