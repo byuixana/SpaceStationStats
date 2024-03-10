@@ -2,31 +2,29 @@
 
 {Important! Do not say in this section that this is college assignment. Talk about what you are trying to accomplish as a software engineer to further your learning.}
 
-{Provide a description of the software that you wrote to demonstrate the R language.}
+I wrote a data analytics program that examines and compares data from the Celetrak space station documentation. Each graph compares data from the group of stations, or a selected station
 
-{Describe your purpose for writing this software.}
+I built this software to help people see a visiualization of the oeprations of space stations and the different ways they findtion.
 
-{Provide a link to your YouTube demonstration. It should be a 4-5 minute demo of the software running and a walkthrough of the code. Focus should be on sharing what you learned about the language syntax.}
 
-[Software Demo Video](http://youtube.link.goes.here)
+
+[Software Demo Video](https://ooo.mmhmm.app/z_QnOzYHoH9WyLe6l8kwbK)
 
 # Development Environment
 
-{Describe the tools that you used to develop the software}
-
-{Describe the programming language that you used and any libraries.}
+I used R Studio and VSCode, along with the R language, to build this program. 
 
 # Useful Websites
 
 {Make a list of websites that you found helpful in this project}
 
-- [Web Site Name](http://url.link.goes.here)
-- [Web Site Name](http://url.link.goes.here)
+- [ChatGPT](https://chat.openai.com/c/2f8656da-9a9d-4d11-ba8d-bd1e01711988)
+- [R Language Tutorial from freecodecamp](https://www.bing.com/videos/riverview/relatedvideo?&q=r+language+tutorial+freecodecamp&qpvt=r+language+tutorial+freecodecamp&mid=E753AE72F3F4DB29E9B4E753AE72F3F4DB29E9B4&&FORM=VRDGAR)
 
 # Future Work
 
 {Make a list of things that you need to fix, improve, and add in the future.}
 
-- Item 1
-- Item 2
-- Item 3
+- I would like to fix the x axis of my mean motion graphs.
+- I would like to check and make sure the future positions formula is correct. 
+- I would like to make it so the csv file is updated daily.
